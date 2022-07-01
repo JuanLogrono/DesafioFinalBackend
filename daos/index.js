@@ -1,6 +1,4 @@
 
-
- 
  const dataBase=process.env.MOTOR
 
 export let productClass
@@ -25,9 +23,9 @@ else if (dataBase === "archivo") {
     cartClass = await import("./carrito/archivoDaoCarrito.js")
         .then(m => m.archivoCarrito)
 } else if (dataBase === "memoria") {
-    productClass = await import("./productos/archivoDaoProducto.js")
+    productClass = await import("./productos/memoriaDaoProducto.js")
         .then(m => m.memoriaProductos)
-    cartClass = await import("./carrito/archivoDaoCarrito.js")
+    cartClass = await import("./carrito/memoriaDaoCarrito.js")
         .then(m => m.memoriaCarrito)
 } else {
     console.error("error en conexión a base de datos")

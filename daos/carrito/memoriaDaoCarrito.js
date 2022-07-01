@@ -7,37 +7,24 @@ class MemoriaDaoContainer extends MemoriaContainer {
         super(arrayCarrito)
 
     }
-    async addProducts(id, body) {
-        try {
-            let cart = await this.read(id);
-            let newProduct = await archivoProductos.read(body.id);
+ async  addProducts(id, body) {
+            let cart =  this.read(id);
+            let newProduct =await archivoProductos.read(body.id);
+            console.log(newProduct)
             cart[0].productos = [...cart[0].productos, newProduct[0]]
 
-        } catch (err) {
-            console.log(err)
-        }
-    }
-    async readProducts(paramId) {
-        try {
-            let resultado = await this.read(paramId)
+            }
+     readProducts(paramId) {
+            let resultado = this.read(paramId)
             let productsCart = resultado[0].productos;
             return (productsCart);
-        }
-        catch (err) {
-            console.log(err)
-        }
+    
     }
-    async deleteProducts(idCart, idProd){
-        try {
-           const carts =await this.read(idCart)
+    deleteProducts(idCart, idProd){
+           const carts = this.read(idCart)
            const newProducts=carts[0].productos
            const deleteProduct=newProducts.filter(element=>element.id !== Number(idProd));
            carts[0].productos=deleteProduct
-           
-
-        } catch (err) {
-           console.log(err) 
-        }
     }
 }
 
