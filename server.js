@@ -1,19 +1,15 @@
-import { routerProducts } from './routes/routesProducts.js'
-import { routerCart } from './routes/routesCart.js';
+import express from 'express'
+import { routerProductos } from './routes/routesProductos.js';
+import { routerCarrito } from './routes/routesCarrito.js';
 
-import express from 'express';
-
-export const app = express();
-
+const app = express();
 
 app.use(express.static('./public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-
-app.use('/api/carrito', routerCart)
-app.use('/api/productos', routerProducts);
+app.use('/api/carrito', routerCarrito)
+app.use('/api/productos', routerProductos);
 
 app.use((req, res) => {
     res.status(404).send({
@@ -22,7 +18,9 @@ app.use((req, res) => {
     })
 })
 
-const PORT = process.env.PORT || 8080
-app.listen(PORT, () => {
+
+
+const PORT= process.env.PORT|| 8080
+app.listen(PORT,()=>{
     console.log(`Escuchando en el puerto ${PORT}`)
-});
+})
