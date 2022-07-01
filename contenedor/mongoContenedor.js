@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { products } from '../daos/productos/mongoDaoProducto.js';
 import { crearId } from '../logica/crearId.js';
 
 
@@ -12,8 +11,7 @@ export class MongoContainer {
         mongoose.connect(this.connectionDir, {
             useNewUrlParser: true,
             useUnifiedTopology: true
-        }),
-            console.log("conectado")
+        })
     }
     async createAdd(product) {
         try {
@@ -38,18 +36,11 @@ export class MongoContainer {
             console.log(error)
         }
     }
-    async update(param, body) {
-        try {
-            this.mongoConnected()
-            await products.updateOne({ id: param }, { $set: body })
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    
     async delete(param) {
         try {
             this.mongoConnected()
-            console.log(await this.model.deleteOne({ id: param }))
+        await this.model.deleteOne({ id: param })
         }
         catch (error) {
             console.log(error)

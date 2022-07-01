@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
+import { carrito, conexion } from '../../config/mongoConfig.js';
 import { MongoContainer } from '../../contenedor/mongoContenedor.js';
-import { crearId } from '../../logica/crearId.js';
 import { mongoProductos } from '../productos/mongoDaoProducto.js';
 
-const carritoSchema = new mongoose.Schema(
+/* const carritoSchema = new mongoose.Schema(
     {
         timeStamp: { type: Date },
         id: { type: String },
@@ -13,24 +13,13 @@ const carritoSchema = new mongoose.Schema(
 export const carrito = mongoose.model('carrito', carritoSchema)
 
 const conexion = 'mongodb+srv://juanLogrono:Juan1234@cluster0.evzhzyt.mongodb.net/?retryWrites=true&w=majority';
-
+ */
 
 class MongoDaoCarrito extends MongoContainer {
     constructor() {
         super(conexion, carrito)
     }
-    async createAdd(product) {
-        try {
-            this.mongoConnected()
-            const id = await crearId(this.read());
-            const newCart = { ...product, "id": id }
-            const saveNew = carrito(newCart);
-            await saveNew.save()
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
+    
     async addProducts(param, body) {
         try {
             this.mongoConnected();

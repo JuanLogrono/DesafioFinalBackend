@@ -26,7 +26,8 @@ res.send (await productClass.read())
 })
 
 routerProductos.post('/',(req,res)=>{
-    const newProduct =req.body
+    const product =req.body
+    const newProduct={...product,timestamp:new Date()}
     productClass.createAdd(newProduct)
     res.send(`Producto agregado con éxito`)
 })

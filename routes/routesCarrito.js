@@ -8,8 +8,8 @@ export const routerCarrito = Router()
 
 routerCarrito.post('/',(req,res)=>{
     const addObj={
-        productos:"",
-        timestamp:new Date()
+        productos:[],
+        timestamp: Date()
     }
     cartClass.createAdd(addObj)  
     res.send("carrito creado")
