@@ -1,6 +1,7 @@
+import { arrayCarrito } from "../../config/memoriaConfig.js";
 import { MemoriaContainer } from "../../contenedor/memoriaContenedor.js";
 import { archivoProductos } from "../productos/archivoDaoProducto.js";
-const arrayCarrito = [{ "productos": "", "id": 1, "timestamp": "29/6/2022, 23:5:1" }]
+
 class MemoriaDaoContainer extends MemoriaContainer {
     constructor() {
         super(arrayCarrito)

@@ -1,19 +1,6 @@
-//import mongoose from 'mongoose';
 import { carrito, conexion } from '../../config/mongoConfig.js';
 import { MongoContainer } from '../../contenedor/mongoContenedor.js';
 import { mongoProductos } from '../productos/mongoDaoProducto.js';
-
-/* const carritoSchema = new mongoose.Schema(
-    {
-        timeStamp: { type: Date },
-        id: { type: String },
-        productos: { type: Array }
-    }
-)
-export const carrito = mongoose.model('carrito', carritoSchema)
-
-const conexion = 'mongodb+srv://juanLogrono:Juan1234@cluster0.evzhzyt.mongodb.net/?retryWrites=true&w=majority';
- */
 
 class MongoDaoCarrito extends MongoContainer {
     constructor() {
