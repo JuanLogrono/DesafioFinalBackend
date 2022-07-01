@@ -37,7 +37,7 @@ export class ArchivoContainer {
         }
         catch (err) {
             console.log(err)
-            this.write([{ ...newProduct, "id": 1, timestamp }])
+            await this.write([{ ...newProduct, "id": 1, timestamp }])
         }
     }
 
@@ -45,7 +45,7 @@ export class ArchivoContainer {
         try {
             let productos = await this.read()
             let resultado = productos.filter(element => element.id !== Number(id))
-            this.write(resultado)
+            await this.write(resultado)
             return ("Elemento Eliminado")
         }
 
