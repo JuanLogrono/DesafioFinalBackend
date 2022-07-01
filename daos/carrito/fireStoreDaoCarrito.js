@@ -11,10 +11,9 @@ class FirebaseDaoContainer extends FirebaseContainer {
     async addProducts(param, body) {
         try {
             const doc = await this.read(param)
-            const newProduct = await firebaseProductos.read(body.id)
-            const add = [...doc.productos, newProduct]
-            console.log(newProduct)
-            
+            const i =`${body.id}`
+            const newProduct = await firebaseProductos.read(i)
+            const add = [...doc.productos, newProduct]            
             await this.query.doc(param).update({ "productos": add })
         }
         catch (error) {
