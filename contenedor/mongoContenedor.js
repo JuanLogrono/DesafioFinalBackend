@@ -29,8 +29,8 @@ export class MongoContainer {
     async read(cod) {
         try {
             this.mongoConnected()
-            let paramCod = (cod !== undefined) ? { id: cod } : {}
-            const verProductos = this.model.find(paramCod)
+            let paramCod = (cod !== undefined) ? cod  : {}
+            const verProductos =await this.model.find(paramCod,{_id:0,__v:0})      
             return verProductos
         } catch (error) {
             console.log(error)

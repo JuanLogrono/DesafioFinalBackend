@@ -5,8 +5,8 @@ const productSchema = new mongoose.Schema(
         "id": {type:String},
         "timestamp": {type:Date},
         "nombre": {type:String},
-        "descripción": {type:String},
-        "código": {type:String},
+        "descripcion": {type:String},
+        "codigo": {type:String},
         "foto": {type:String},
         "precio": {type:Number},
         "stock": {type:Number}
@@ -17,7 +17,8 @@ const carritoSchema = new mongoose.Schema(
     {
         timeStamp: { type: Date },
         id: { type: String },
-        productos: { type: Array }
+        productos: { type: Array },
+        username: {type: String}
     }
 )
 export const carrito = mongoose.model('carrito', carritoSchema)
