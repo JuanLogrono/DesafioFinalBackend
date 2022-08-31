@@ -10,10 +10,11 @@ class MongoDaoCarrito extends MongoContainer {
     async addProducts(param, body) {
         try {
             this.mongoConnected();
-            const cart = await this.read(param);
-            const productoAgregado = await mongoProductos.read(body.id)
+            const cart = await this.read({username:param});
+            const productoAgregado = await mongoProductos.read({id:body})
+
             const add = [...cart[0].productos, productoAgregado[0]]
-            await carrito.updateOne({ id: param }, { $set: { productos: add } })
+            await carrito.updateOne({ username: param }, { $set: { productos: add } })
         } catch (error) {
             console.log(error)
         }
@@ -21,8 +22,8 @@ class MongoDaoCarrito extends MongoContainer {
     async readProducts(param) {
         try {
             this.mongoConnected()
-            const cart = await this.read(param)
-            const cartProducts = cart[0].productos
+            const cart = await this.read({username:param})
+            const cartProducts = cart[0]
             return cartProducts
         }
         catch (error) {
@@ -31,7 +32,7 @@ class MongoDaoCarrito extends MongoContainer {
     }
     async deleteProducts(param, paramProd) {
         try {
-            const deleteProd = await this.readProducts(param)
+            const deleteProd = await this.readProducts({username:param})
             const add = deleteProd.filter((e)=>e.id !== paramProd)
             await carrito.updateOne({ id: param }, { $set: { productos: add } })
         }

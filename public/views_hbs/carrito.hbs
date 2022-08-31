@@ -1,0 +1,15 @@
+
+<h5>numero de carrito:{{id}}</h5>
+<strong>productos:
+    <ul> 
+    {{#each productos}}
+       <li>{{this.nombre}}</li> 
+{{/each}}
+</ul>
+</strong>
+<form action="/api/carrito/finalizar_compra" method="post">
+<input type="submit" value="finalizar compra">
+</form>
+<form action="/api/carrito/{{id}}" method="delete">
+<input type="submit" value="cancelar">
+</form>
