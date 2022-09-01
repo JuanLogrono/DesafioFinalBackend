@@ -5,7 +5,7 @@ const storage = multer.diskStorage({
     filename: (req, _, cb) => {
       const file={fieldname: req.session.passport.user
       }
-      const fileName = file.fieldname + '-' + Date.now()
+      const fileName = file.fieldname 
       cb(null, fileName)
     }
   });

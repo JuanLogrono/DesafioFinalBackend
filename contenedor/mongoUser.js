@@ -1,6 +1,7 @@
 
 import mongoose from "mongoose";
 import { conexion } from "../config/mongoConfig.js";
+import winstonLogger from "../config/winston.js";
 
 
 const userSchema = new mongoose.Schema(
@@ -38,7 +39,7 @@ class MongoUser {
             await saveNew.save()
         }
         catch (err) {
-            console.log(err)
+           winstonLogger.error(err)
         }
     }
     async findUser(username) {
@@ -47,7 +48,7 @@ class MongoUser {
             const filterUser = this.model.find({ username: username })
             return filterUser
         } catch (error) {
-            console.log(error)
+            winstonLogger.error(error)
         }
     }
     async update(username, body) {
@@ -55,7 +56,7 @@ class MongoUser {
             this.mongoConnected()
             await this.model.updateOne({ username: username }, { $set: body })
         } catch (error) {
-            console.log(error)
+            winstonLogger.error(error)
         }
     }
 }

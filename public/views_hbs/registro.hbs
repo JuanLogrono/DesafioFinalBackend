@@ -12,6 +12,12 @@
     <input type="number" name="edad" id="edad" required="required" />
    
     <label for="telefono"> Teléfono</label>
+    <select name="pais" id="country">
+        {{#each pais}}
+	<option value="{{dial_code}}">{{name}} {{dial_code}}</option>
+{{/each}}
+    </select>
+
     <input type="tel" name="telefono" id="telefono" required="required" />
       
     <label for="password">Contraseña</label>

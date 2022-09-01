@@ -1,3 +1,5 @@
+import winstonLogger from "../config/winston.js";
+
 export const crearId = async (allProduct) => {
     let id = 0
     let productos;
@@ -11,6 +13,6 @@ export const crearId = async (allProduct) => {
         return id
     }
     catch(error){
-        console.log(error)
+         winstonLogger.error(error)
     }
 }

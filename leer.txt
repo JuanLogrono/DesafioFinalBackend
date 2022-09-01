@@ -1,0 +1,4 @@
+todas los datos de twilio y nodemailer están borrados para agregar con variables directamente en el codigo.
+el tel de recepcion del sms puede estar agregado en el usuario o por constante.
+
+todos los envios mail, sms y whatsApp estan comentados ya que al subirlos a heroku iban a dar error  

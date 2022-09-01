@@ -1,7 +1,7 @@
 import { carrito, conexion } from '../../config/mongoConfig.js';
+import winstonLogger from '../../config/winston.js';
 import { MongoContainer } from '../../contenedor/mongoContenedor.js';
 import { mongoProductos } from '../productos/mongoDaoProducto.js';
-
 class MongoDaoCarrito extends MongoContainer {
     constructor() {
         super(conexion, carrito)
@@ -16,7 +16,7 @@ class MongoDaoCarrito extends MongoContainer {
             const add = [...cart[0].productos, productoAgregado[0]]
             await carrito.updateOne({ username: param }, { $set: { productos: add } })
         } catch (error) {
-            console.log(error)
+             winstonLogger.error(error)
         }
     }
     async readProducts(param) {
@@ -27,7 +27,7 @@ class MongoDaoCarrito extends MongoContainer {
             return cartProducts
         }
         catch (error) {
-            console.log(error)
+             winstonLogger.error(error)
         }
     }
     async deleteProducts(param, paramProd) {
@@ -37,7 +37,7 @@ class MongoDaoCarrito extends MongoContainer {
             await carrito.updateOne({ id: param }, { $set: { productos: add } })
         }
         catch(error){
-            console.log(error)
+             winstonLogger.error(error)
         }
 
         }

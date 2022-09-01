@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import winstonLogger from '../config/winston.js';
 import { crearId } from '../logica/crearId.js';
 
 
@@ -22,7 +23,7 @@ export class MongoContainer {
             await saveNew.save()
         }
         catch (err) {
-            console.log(err)
+            winstonLogger.error(err)
         }
     }
 
@@ -33,7 +34,7 @@ export class MongoContainer {
             const verProductos =await this.model.find(paramCod,{_id:0,__v:0})      
             return verProductos
         } catch (error) {
-            console.log(error)
+            winstonLogger.error(error)
         }
     }
     
@@ -43,7 +44,7 @@ export class MongoContainer {
         await this.model.deleteOne({ id: param })
         }
         catch (error) {
-            console.log(error)
+            winstonLogger.error(error)
         }
     }
 }

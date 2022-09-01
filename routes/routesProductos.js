@@ -1,4 +1,5 @@
 import express from 'express';
+import winstonLogger from '../config/winston.js';
 import {productClass} from '../daos/index.js';
 import { dataUser } from '../logica/userNav.js';
 
@@ -20,7 +21,7 @@ routerProductos.get('/:id?',async (req,res)=>{
     let r;
     if(!param){
         r = await productClass.read()
-    }else{ r= await productClass.read({id:param}),console.log(req.params)}
+    }else{ r= await productClass.read({id:param})}
     let respuesta=[];
     r.forEach(element => {
         respuesta.push({codigo:element.codigo,
@@ -57,6 +58,6 @@ routerProductos.post('/',(req,res)=>{
     const product =req.body
 
     const newProduct={...product,timestamp:new Date()}
-    console.log(productClass.createAdd(newProduct));
+    winstonLogger.info(productClass.createAdd(newProduct));
     res.send(`Producto agregado con éxito`)
 })
