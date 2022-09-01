@@ -10,17 +10,25 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
     ></script>
-    {{!-- <link rel="stylesheet" href="/style.css"> --}}
+    <link rel="stylesheet" href="/style.css"> 
 
     <title>{{titulo}}</title>
   </head>
   <body>
-    <div>hola {{userData.nombre}} {{userData.edad}} {{userData.direccion}} <img src="{{userData.foto}}"alt="{{userData.username}}"/> </div>
     {{#if boton}}
+    <div>
+      <img class="imagen" src="{{userData.foto}}"alt="{{userData.username}}"/>
+    <ul>
+      <li>Nombre {{userData.nombre}}</li>
+      <li>Edad:{{userData.edad}}</li>
+      <li>Direccion:{{userData.direccion}}</li>
+      </ul>     
+      </div>
     <form action="/api/carrito/{{userData.username}}/productos">
     <input type="submit" value="ver carrito">
     </form>
     <button type="button" id="producto">ver productos</button>
+    <button type="button" id="logOut">salir</button>
     {{/if}}
     {{{body}}}
 

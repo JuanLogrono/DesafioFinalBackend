@@ -1,6 +1,6 @@
 import { conexion, products } from '../../config/mongoConfig.js';
+import winstonLogger from '../../config/winston.js';
 import { MongoContainer}  from '../../contenedor/mongoContenedor.js';
-
 
 
 class MongoDaoProductos extends MongoContainer{
@@ -12,7 +12,7 @@ class MongoDaoProductos extends MongoContainer{
             this.mongoConnected()
             await products.updateOne({ id: param }, { $set: body })
         } catch (error) {
-            console.log(error)
+             winstonLogger.error(error)
         }
     }
     

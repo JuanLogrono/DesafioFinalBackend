@@ -2,6 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local"
 import bcrypt, { genSaltSync } from "bcrypt"
 import { mongoUsers} from "../contenedor/mongoUser.js";
+import winstonLogger from "./winston.js";
 
 passport.use('registro', new LocalStrategy(async (username, password, callback) => {
     try {
@@ -13,7 +14,7 @@ passport.use('registro', new LocalStrategy(async (username, password, callback) 
         callback(null, newUser)
     }
     catch (err) {
-        console.log(err)
+        winstonLogger.error(err)
     }
 }))
 
